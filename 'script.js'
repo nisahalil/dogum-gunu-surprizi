@@ -1,0 +1,31 @@
+document.addEventListener("DOMContentLoaded", function() {
+    // Hedef tarih: Örnek olarak, 2024 yılının 27 Ağustos tarihi
+    const targetDate = new Date("2024-08-25T00:00:00").getTime();
+
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        if (distance < 0) {
+            // Zaman dolmuşsa içeriyi göster
+            document.getElementById("countdown").style.display = "none";
+            document.getElementById("content").style.display = "block";
+            return;
+        }
+
+        // Gün, saat, dakika ve saniye hesaplama
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Zamanı sayfada gösterme
+        document.getElementById("days").innerText = days;
+        document.getElementById("hours").innerText = hours;
+        document.getElementById("minutes").innerText = minutes;
+        document.getElementById("seconds").innerText = seconds;
+    }
+
+    // Sayacı her 1 saniyede bir güncelle
+    setInterval(updateCountdown, 1000);
+});
